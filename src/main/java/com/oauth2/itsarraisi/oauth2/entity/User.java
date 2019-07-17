@@ -50,8 +50,6 @@ public class User {
     @Column(name = "matching_password")
     private String matchingPassword;
 
-    @NotNull
-    @NotEmpty
     @Column(name = "active")
     private Boolean active;
 
