@@ -54,7 +54,7 @@ public class User {
     private Boolean active;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_details_id"))
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_details_id"), inverseJoinColumns = @JoinColumn(name = "roles_id"))
     private Set<Role> roles;
 
     public User(User user) {
@@ -66,5 +66,6 @@ public class User {
         this.password = user.getPassword();
         this.matchingPassword = user.getMatchingPassword();
         this.active = user.getActive();
+        this.roles = user.getRoles();
     }
 }

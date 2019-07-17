@@ -19,8 +19,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<User> optionalUser = repository.findByEmail(email);
-
-        optionalUser.orElseThrow(() -> new UsernameNotFoundException("Email not found"));
+        optionalUser.orElseThrow(() -> new UsernameNotFoundException("Email not found with email "+ email));
         return optionalUser.map(user -> new CustomUserDetails(user)).get();
     }
 }
