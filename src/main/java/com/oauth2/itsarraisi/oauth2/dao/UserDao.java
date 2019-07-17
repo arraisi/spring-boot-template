@@ -15,4 +15,8 @@ public class UserDao {
     public Optional<User> findById(Integer id){
         return repository.findById(id);
     }
+
+    public User save(User param) {
+        return repository.save(param);
+    }
 }

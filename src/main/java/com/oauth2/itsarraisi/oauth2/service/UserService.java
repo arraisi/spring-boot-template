@@ -15,4 +15,8 @@ public class UserService {
     public Optional<User> findById(Integer id){
         return dao.findById(id);
     };
+
+    public User save(User param) {
+        return dao.save(param);
+    }
 }

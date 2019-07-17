@@ -6,11 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @Slf4j
@@ -20,9 +16,15 @@ public class UserApi {
     @Autowired
     UserService service;
 
+    @PostMapping("/")
+    public ResponseEntity<User> registration(@RequestBody User param){
+        User user = service.save(param);
+      return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Optional<User>> findById(@PathVariable Integer id){
         Optional<User> user = service.findById(id);
-        return new ResponseEntity<>(user, HttpStatus.CREATED);
+        return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
     }
 }
